@@ -11,13 +11,10 @@ notes.get('/', (req, res) => {
 
 // POST Route for submitting new note
 notes.post('/', (req, res) => {
-  // Log that a POST request was received
   console.info(`${req.method} request received to add new note`);
 
-  // Destructuring for the items in req.body
   const { title, text } = req.body;
 
-  // If all the required properties are present
   if (title && text) {
     const newNote = {
       title,
@@ -36,6 +33,20 @@ notes.post('/', (req, res) => {
   } else {
     res.json('Error in posting new note');
   }
+});
+
+// DELETE Route for a specific note
+notes.delete('/:note_id', (req, res) => {
+  const noteId = req.params.note_id;
+  readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+      const result = json.filter((notes) => notes.note_id !==noteId);
+
+      writeToFile('./db/db.json', result);
+
+      res.json(`Item ${noteId} has been deleted 🗑️`);
+    });
 });
 
 module.exports = notes;
