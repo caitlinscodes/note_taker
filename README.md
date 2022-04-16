@@ -14,7 +14,7 @@ A user will need to run npm install in their terminal to get started. Once compl
 
 ## Link To The Deployed Page
 
-[Link to final webpage](https://caitlinscodes.github.io/portfolio/)
+[Link to final webpage](https://caitlinscodes-note-taker.herokuapp.com/)
 
 ## Link To GitHub Repo
 
